@@ -53,6 +53,7 @@ namespace SimplePayRollApplication.Services
                 Salary = q.Salary,
                 Level = q.Level,
                 IsDeleted = q.IsDeleted,
+                Pension = _taxService.CalculatePension(q.Salary * 12),
                 PAYE = _taxService.CalculateTax(q.Salary),
                 TaxableIncome = _taxService.CalculateTaxableIncome(q.Salary),
                 SalaryAfterTaxDeduction = q.Salary - _taxService.CalculateTax(q.Salary)
