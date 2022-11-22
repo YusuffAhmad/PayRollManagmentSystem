@@ -1,0 +1,82 @@
+﻿@model List<SimplePayRollApplication.DTOs.EmployeeDto>
+
+<h1>Employee Pay And Tax Deduction Table</h1>
+         
+<table id="tblData" class="table">
+    <thead>
+        <tr>
+            <th>
+                Employee Id
+            </th>
+            <th>
+                Firstname
+            </th>
+            <th>
+                Lastname
+            </th>
+            <th>
+                Department
+            </th>
+            <th>
+                Salary
+            </th>
+            
+            <th>
+               Level
+            </th>
+            
+            <th>
+                Pension
+            </th>
+            <th>
+                PAYE
+            </th>
+            <th>
+                TaxableIncome
+            </th>
+            <th>
+                SalaryAfterTaxDeduction
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Level)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pension)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PAYE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaxableIncome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SalaryAfterTaxDeduction)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
