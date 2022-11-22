@@ -21,6 +21,9 @@ namespace SimplePayRollApplication.Services
 
         public decimal CalculatePension(decimal income)
         {
+            if (income <= 0)
+                throw new InvalidIncomeException("The income is Less than Or Equal to Zero");
+            
             decimal percentage = 8m / 100m;
             var pension = percentage * income;
             return pension;

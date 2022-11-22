@@ -28,7 +28,16 @@ namespace SimplePayRollApplication.Tests
         {
             Assert.That(() => _taxService.CalculateTax(income), Throws.Exception.TypeOf<NonTaxableIncomeException>());
         }
-        
+
+        [Test]
+        [TestCaseSource(nameof(IncomeTestsCases))]
+        public void CalculateTax_IncomeIsGreaterThanZero_ReturnThePayableTaxAmount(decimal income, decimal expectedResult)
+        {
+            var result = _taxService.CalculateTax(income);
+
+            Assert.That(result, Is.EqualTo(expectedResult));
+        }
+
         [Test]
         [TestCase(-1)]
         [TestCase(0)]
@@ -44,14 +53,6 @@ namespace SimplePayRollApplication.Tests
             Assert.That(() => _taxService.CalculateTaxableIncome(income), Throws.Exception.TypeOf<NonTaxableIncomeException>());
         }
         
-        [Test]
-        [TestCaseSource(nameof(IncomeTestsCases))]
-        public void CalculateTax_IncomeIsGreaterThanZero_ReturnThePayableTaxAmount(decimal income, decimal expectedResult)
-        {
-            var result = _taxService.CalculateTax(income);
-
-            Assert.That(result, Is.EqualTo(expectedResult));
-        }
         
         [Test]
         [TestCaseSource(nameof(TaxableIncomeTestsCases))]
@@ -59,6 +60,23 @@ namespace SimplePayRollApplication.Tests
         {
             var result = _taxService.CalculateTaxableIncome(income);
             
+            Assert.That(result, Is.EqualTo(expectedResult));
+        }
+
+        [Test]
+        [TestCase(-1)]
+        [TestCase(0)]
+        public void CalculatePension_IncomeIsNegativeOrZero_ThrowInvalidIncomeException(decimal income)
+        {
+            Assert.That(() => _taxService.CalculatePension(income), Throws.Exception.TypeOf<InvalidIncomeException>());
+        }
+
+        [Test]
+        [TestCase(4000000, 320000)]
+        public void CalculatePension_IncomeIsGreaterThanZero_ReturnExpectedOutput(decimal income, decimal expectedResult)
+        {
+            var result = _taxService.CalculatePension(income);
+
             Assert.That(result, Is.EqualTo(expectedResult));
         }
 
