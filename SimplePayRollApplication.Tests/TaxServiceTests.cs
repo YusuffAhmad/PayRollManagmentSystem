@@ -83,6 +83,10 @@ namespace SimplePayRollApplication.Tests
         static readonly object[] IncomeTestsCases =
         {
             new object[] {300000m, 33534.666666666666666666666667m},
+            new object[] {600000m, 84650.66666666666666666666667m},
+            new object[] {1100000m, 172970.66666666666666666666667m},
+            new object[] {1600000m, 261290.66666666666666666666667m},
+            new object[] {3200000m, 540234.66666666666666666666667m},
             new object[] {9845000m, 1698059.4666666666666666666667m},
         };
         
